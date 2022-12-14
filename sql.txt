@@ -1,0 +1,81 @@
+DATA BASE KODLARI 
+USER -TABLE
+CREATE TABLE users(
+id serial NOT NULL ,
+user_name VARCHAR(30),
+phone VARCHAR(30),
+email VARCHAR(30),
+password VARCHAR(30),
+gender VARCHAR(30),
+age int,
+weight int,
+PRIMARY KEY(ID),
+UNIQUE(user_name)
+);
+
+ALTER TABLE users
+ADD food_id int ;
+
+ALTER TABLE users 
+ADD FOREIGN KEY (food_id) REFERENCES 
+foods(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE users
+ADD bmis int ;
+
+ALTER TABLE users
+ADD FOREIGN KEY (bmis) REFERENCES bmi_values(id)ON UPDATE CASCADE ON DELETE CASCADE
+
+FOOD -TABLE
+CREATE TABLE foods(
+id SERIAL NOT NULL,
+food_name VARCHAR(50),
+calorie int,
+PRIMARY KEY(id)
+) ;
+
+ALTER TABLE foods
+ADD food_meal int
+
+ALTER TABLE foods
+ADD FOREIGN KEY (food_meal) REFERENCES meals(id)  ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+EXERCİSE TABLE 
+CREATE TABLE exercises(
+id SERIAL not null,
+name VARCHAR(30),
+burning_calories int,
+PRIMARY KEY (id)	
+);
+
+macros---
+CREATE TABLE macros(
+id serial NOT NULL, 
+macro_name VARCHAR(30), 
+macro_food int, 
+PRIMARY KEY(id), 
+FOREIGN KEY (macro_food) REFERENCES foods(id)
+);
+
+ALTER TABLE macros
+ADD FOREIGN KEY (macro_food) REFERENCES foods(id) ON UPDATE CASCADE ON DELETE CASCADE 
+
+meals - öğün table
+
+CREATE TABLE meals(
+id serial NOT NULL,
+name VARCHAR(30),
+PRIMARY KEY(id));
+
+
+
+bmi-table
+CREATE TABLE bmi_values(
+id serial NOT NULL,
+bmi_val int ,
+PRIMARY KEY(id)
+);
+
+
+calculations -table  ???? no idea ı have 
